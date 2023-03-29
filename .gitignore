@@ -38,3 +38,5 @@ boost-learn/test/JudgeByteOrder
 boost-learn/socket-send
 boost-learn/socket-accept
 boost-learn/socket-bind
+boost-learn/multiplexier/epoll_lt_et
+boost-learn/advancedIO/pipe-test
