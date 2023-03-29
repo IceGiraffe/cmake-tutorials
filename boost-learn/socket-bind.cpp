@@ -65,7 +65,8 @@ int main(int argc, char *argv[])
 
     ret = listen(sock, backlog);
     // 哪怕不accept，也会进入到ESTABLISHED状态
-    while(!stop){
+    while (!stop)
+    {
         sleep(1);
     }
 
