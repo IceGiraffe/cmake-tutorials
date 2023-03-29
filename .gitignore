@@ -37,3 +37,4 @@
 boost-learn/test/JudgeByteOrder
 boost-learn/socket-send
 boost-learn/socket-accept
+boost-learn/socket-bind
