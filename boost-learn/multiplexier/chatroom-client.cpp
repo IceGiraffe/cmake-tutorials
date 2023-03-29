@@ -38,14 +38,18 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // poll的数据结构，传入一个pollfd数组
     pollfd fds[2];
+    // 文件描述符0表示标准输入
     fds[0].fd = 0;
     fds[0].events = POLLIN;
     fds[0].revents = 0;
+    // sockfd
     fds[1].fd = sockfd;
     fds[1].events = POLLIN | POLLRDHUP;
     fds[1].revents = 0;
     char read_buf[BUFFER_SIZE];
+    // 管道
     int pipefd[2];
     int ret = pipe(pipefd);
     assert(ret != -1);
@@ -59,6 +63,7 @@ int main(int argc, char *argv[])
             break;
         }
 
+        // 判断socket
         if (fds[1].revents & POLLRDHUP)
         {
             printf("server close the connection\n");
@@ -71,9 +76,12 @@ int main(int argc, char *argv[])
             printf("%s\n", read_buf);
         }
 
+        // 判断标准输入
         if (fds[0].revents & POLLIN)
         {
+            // 将标准输入的数据移动到pipe的写端
             ret = splice(0, NULL, pipefd[1], NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);
+            // 将pipe读端移动到sockfd中
             ret = splice(pipefd[0], NULL, sockfd, NULL, 32768, SPLICE_F_MORE | SPLICE_F_MOVE);
         }
     }

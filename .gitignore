@@ -40,3 +40,6 @@ boost-learn/socket-accept
 boost-learn/socket-bind
 boost-learn/multiplexier/epoll_lt_et
 boost-learn/advancedIO/pipe-test
+boost-learn/multiplexier/chatroom-client
+.gitignore
+boost-learn/multiplexier/chatroom-server
